@@ -15,22 +15,29 @@ bool isPalindrome(string s) {
     int j = s.length()-1;
     while(i <= j){
         //convert all to lowercase if applicable since case doesnt matter
-        char temp1 = tolower(s[i]), temp2 = tolower(s[j]);
+        char temp1 = s[i], temp2 = s[j];
         //If either of them are spaces, then skip that index
         if(temp1 == ' '){
             i++;
             continue;
         }
-        if(temp2 == ' '){
+        else if(temp2 == ' '){
             j--;
             continue;
         }
+        //Convert to lowercase using ASCII
+        if(temp1 <= 'Z' && temp1 >= 'A'){
+            temp1 += 32;
+        }
+        if(temp2 <= 'Z' && temp2 >= 'A'){
+            temp2 += 32;
+        }
         //use the ascii table to only consider alphanumeric values
-        if(int(temp1) < 48 || int(temp1) > 57 && int(temp1) < 97 || int(temp1) > 122){
+        if(!isalnum(temp1)){
             i++;
             continue;
         }
-        if(int(temp2) < 48 || int(temp2) > 57 && int(temp2) < 97 || int(temp2) > 122){
+        if(!isalnum(temp2)){
             j--;
             continue;
         }
